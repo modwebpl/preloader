@@ -1,2 +1,2 @@
 # preloader
-Display preluder screen before window load
+Display splash screen before window load / remove it after load

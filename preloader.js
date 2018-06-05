@@ -36,7 +36,7 @@ preloader.prototype = {
     }, false);
   },
 
-  _cb: function (_this) {
+  _cb: function (_this, time) {
     let afterLoad = setTimeout(function () {
       console.log('load complete');
       _this._preloader.remove();

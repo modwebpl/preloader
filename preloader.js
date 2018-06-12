@@ -31,15 +31,17 @@ preloader.prototype = {
       TweenLite.to(_this._preloader, time, {
         autoAlpha: 0,
         onComplete: _this._cb,
-        onCompleteParams: [_this]
+        onCompleteParams: [_this, time]
       });
     }, false);
   },
 
   _cb: function (_this, time) {
+    let delay = time + 100;
+    
     setTimeout(function () {
       console.log('load complete');
       _this._preloader.remove();
-    }, time);
+    }, delay);
   }
 };

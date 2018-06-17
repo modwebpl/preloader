@@ -40,8 +40,8 @@ preloader.prototype = {
     let delay = (time * 1000) + 100;
 
     setTimeout(function () {
-      console.log('load complete');
       _this._preloader.remove();
+      console.log('load complete');
     }, delay);
   }
 };

@@ -37,8 +37,8 @@ preloader.prototype = {
   },
 
   _cb: function (_this, time) {
-    let delay = time + 100;
-    
+    let delay = (time * 1000) + 100;
+
     setTimeout(function () {
       console.log('load complete');
       _this._preloader.remove();

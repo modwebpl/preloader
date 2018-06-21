@@ -26,7 +26,6 @@ preloader.prototype = {
   _setEvents: function (time) {
     var _this = this;
 
-    //TweenLite.killTweensOf(_this._preloader);
     window.addEventListener('load', function () {
       TweenLite.to(_this._preloader, time, {
         autoAlpha: 0,

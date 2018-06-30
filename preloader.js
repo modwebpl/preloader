@@ -1,24 +1,31 @@
-export let preloader = function (el, time = '0.1') {
-  this.init(el, time);
+export let preloader = function ({id, time = 0}) {
+  this.init(id, time);
 };
 
 preloader.prototype = {
   constructor: preloader,
 
-  init: function (el, time) {
+  init: function (id, time) {
     var _this = this;
 
-    if (!_this._setVars(el)) return;
+    if (!_this._setVars(id)) return;
     _this._setEvents(time);
   },
 
-  _setVars: function (el) {
+  _setVars: function (id) {
     var _this = this;
 
-    _this._preloader = el;
+    _this._preloader = document.getElementById(id);
     if (!_this._preloader) return false;
 
-    CSSPlugin;
+    _this._tl = new TimelineLite({
+      paused: true,
+      onComplete: function(){
+        _this._preloader.innerHTML = '';
+        this.clear();
+        //console.log('load complete');
+      }
+    });
 
     return true;
   },
@@ -27,20 +34,7 @@ preloader.prototype = {
     var _this = this;
 
     window.addEventListener('load', function () {
-      TweenLite.to(_this._preloader, time, {
-        autoAlpha: 0,
-        onComplete: _this._cb,
-        onCompleteParams: [_this, time]
-      });
+      _this._tl.play().to(_this._preloader, time, {autoAlpha: 0});
     }, false);
-  },
-
-  _cb: function (_this, time) {
-    let delay = (time * 1000) + 200;
-
-    setTimeout(function () {
-      _this._preloader.remove();
-      console.log('load complete');
-    }, delay);
   }
 };

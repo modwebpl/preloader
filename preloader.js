@@ -1,4 +1,4 @@
-export let preloader = function ({id, time = 0}) {
+export let preloader = function (id, time = 0) {
   this.init(id, time);
 };
 
@@ -8,24 +8,29 @@ preloader.prototype = {
   init: function (id, time) {
     var _this = this;
 
-    if (!_this._setVars(id)) return;
+    if (!_this._setVars(id, time)) return;
     _this._setEvents(time);
   },
 
-  _setVars: function (id) {
+  _setVars: function (id, time) {
     var _this = this;
+
+    let cbTime = time * 1000;
 
     _this._preloader = document.getElementById(id);
     if (!_this._preloader) return false;
 
     _this._tl = new TimelineLite({
       paused: true,
-      onComplete: function(){
-        _this._preloader.innerHTML = '';
+      onComplete: function () {
+        setTimeout(function () {
+          _this._preloader.innerHTML = '';
+          console.log('load complete')
+        }, cbTime + 500);
         this.clear();
-        //console.log('load complete');
       }
     });
+    CSSPlugin;
 
     return true;
   },

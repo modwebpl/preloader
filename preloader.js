@@ -25,7 +25,7 @@ preloader.prototype = {
       onComplete: function () {
         setTimeout(function () {
           _this._preloader.innerHTML = '';
-          console.log('load complete')
+          //console.log('load complete')
         }, cbTime + 500);
         this.clear();
       }

@@ -3,7 +3,7 @@ export class preloader {
   
     if (!this._setVars(id)) return;
     
-    window.addEventListener('load', ()=> {
+    window.addEventListener('load', load_end => {
       TweenLite.to(this._preloader, time, {
       autoAlpha: 0, onComplete: this.destroy
     });

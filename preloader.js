@@ -2,10 +2,12 @@ export class preloader {
   constructor(id, time = 0) {
   
     if (!this._setVars(id)) return;
-    TweenLite.to(this._preloader, time, {
+    
+    window.addEventListener('load', ()=> {
+      TweenLite.to(this._preloader, time, {
       autoAlpha: 0, onComplete: this.destroy
     });
-    
+    }, false);
   }
 
   _setVars(id) {
@@ -17,7 +19,7 @@ export class preloader {
   }
 
   destroy() {
-  
+    
     setTimeOut(() => {
       if (!this._preloader || !this._preloader.parentNode) return;
       this._preloader.parentNode.removeChild(this._preloader);
@@ -25,5 +27,4 @@ export class preloader {
     
     for (const key in this) if (this.hasOwnProperty(key)) this[key] = null;
   }
-  
 }
